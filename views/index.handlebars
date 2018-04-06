@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="news-container">
+        <ul>
+        {{#each news}}
+            <li>
+                <h3>{{this.title}}</h3>
+                <img src="{{this.image_url}}" alt="news_image" />
+                <p class="news-summary">{{this.summary}}</p>
+                <p class="news-url">{{this.news_url}}</p>
+            </li>
+        {{/each}}
+        </ul>
+    </div>
+        {{!-- comment section for news --}}
+    <div>
+        <form action="/" method="POST">
+            <textarea type="text" name="comment"></textarea>
+
+            <button type="submit">Add your comment</button>
+        </form>
+    </div>
+</div>

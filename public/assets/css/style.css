@@ -1,0 +1,32 @@
+body {
+    background: #f4e289;
+}
+
+.container {
+    width:300px;
+    height:300px;
+    float: left;
+    margin: 10px;
+}
+
+h3 {
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(36, 36, 36);
+    font-size: 20px;
+}
+
+image {
+    width:200px;
+    height:200px;
+}
+
+.news-summary {
+    font-family: 'Courier New', Courier, monospace;
+    color: gray;
+    font-size: 15px;
+}
+.news-url {
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(164, 164, 164);
+    font-size: 12px;
+}
