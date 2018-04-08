@@ -20,6 +20,8 @@ module.exports = function(app){
 
     });
 
+
+
     app.get("/scrape", function(req, res) {
         request("https://www.chowhound.com/food-news/latest/", function(error, response, html) {
     
@@ -55,16 +57,18 @@ module.exports = function(app){
         });
 
 
-    app.get("/articles", function(req, res) {
-        Article.find({}, function (err, data) {
-            if (err) {
-                console.log("dang something wrong")
-            } else {
-                res.render("index", {result: data});
-            }
-        })
-        .sort({'_id': -1})
-    });    
+        app.get("/articles", function(req, res) {
+            Article.find({}, function (err, data) {
+                if (err) {
+                    //when we have an error, we want to be very clear in our logging to make development and usage as a client easier...
+                    console.log("We had an error at /articles", error);
+                    //console.log("dang something wrong")
+                } else {
+                    res.render("index", {result: data});
+                }
+            })
+            .sort({'_id': -1})
+        });   
 
     app.get("/article/:id", function (req, res) {
         Article.findOne({"_id": req.params.id})

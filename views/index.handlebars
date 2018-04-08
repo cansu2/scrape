@@ -9,12 +9,12 @@
                         <p class="news-summary">{{this.summary}}</p>
                         <a class="news-url" href="{{this.news_link}}">{{this.news_link}}</a>
                         
-                        {{#unless this.commnet}}
+                        {{#unless this.comment}}
                             <p>There is no comment yet.</p>
                         {{/unless}} 
                         {{#if this.comment}}   
                             <p id="comment-title">Comments</p> 
-                            <p id="comment">{{this.comment}}</p>
+                            <p id="comment">{{this.comment}}   <i id ="delete" class="fas fa-minus-circle" style="color:Tomato"></i></p>
                             <p id="comment-time">{{this.created_time}}</p>  
                         {{/if}}    
                     </div> 
