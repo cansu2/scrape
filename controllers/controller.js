@@ -68,6 +68,7 @@ module.exports = function(app){
                 }
             })
             .sort({'_id': -1})
+            res.end();
         });   
 
     app.get("/article/:id", function (req, res) {
