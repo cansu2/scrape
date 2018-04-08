@@ -8,17 +8,20 @@
                         <img src="{{this.image_link}}" alt="news_image"  />
                         <p class="news-summary">{{this.summary}}</p>
                         <a class="news-url" href="{{this.news_link}}">{{this.news_link}}</a>
-                        <p id="comment-title">Comments</p>  
-                        {{#if this.comment}}  
-                            {{#each this.comment}}  
-                                <p id="comment">{{this.comment}}</p>
-                                <p id="comment-time">{{this.created_time}}</p>
-                            {{/each}}    
+                        
+                        {{#unless this.commnet}}
+                            <p>There is no comment yet.</p>
+                        {{/unless}} 
+                        {{#if this.comment}}   
+                            <p id="comment-title">Comments</p> 
+                            <p id="comment">{{this.comment}}</p>
+                            <p id="comment-time">{{this.created_time}}</p>  
                         {{/if}}    
                     </div> 
                 </div> 
                <div class="comment-section">
                 <div class="row">
+                <form method="POST" action="/articles/{{this._id}}">
                     <div class="form-group col-md-7">
                         <input type="text" id="comment-input">
                     </div>
@@ -26,6 +29,7 @@
                          <button type="submit" id="save-comment" class="btn-sml btn-outline-secondary">Comment</button>
                     </div>
                 </div>
+            </form>
              </div>
     </div>
          {{/each}}
