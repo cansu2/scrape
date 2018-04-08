@@ -38,7 +38,20 @@ p {
     font-size: 12px;
 }
 
-#saveComment {
+#save-comment {
     font-family: 'Courier New', Courier, monospace;
 }
 
+#comment-title {
+    color: rgb(60, 60, 60); 
+    font-weight: bold;
+}
+
+#comment {
+    font-size: 14px;
+}
+
+#comment-time {
+    font-size: 10px;
+    color: rgb(3, 3, 103);
+}

@@ -91,6 +91,7 @@ module.exports = function(app){
         if (error) {
           console.log(error);
         } else {
+          console.log(doc.id)
           Article.findOneAndUpdate({
             "_id": req.params.id
           }, {
@@ -98,8 +99,7 @@ module.exports = function(app){
               "comment": doc._id
             }
           }, {
-            safe: true,
-            upsert: true,
+          
             new: true
           })
           // Execute the above query
@@ -115,30 +115,4 @@ module.exports = function(app){
         }
       });
   });
-
-  // app.delete("/articles/:id/:commentid", function (req, res) {
-  //   Comment.findByIdAndRemove(req.params.commentid, function (error, doc) {
-  //       // Log any errors
-  //       if (error) {
-  //         console.log(error// Otherwise
-  //         );
-  //       } else {
-  //         console.log(doc);
-  //         Article.findOneAndUpdate({
-  //           "_id": req.params.id
-  //         }, {
-  //           $pull: {
-  //             "comment": doc._id
-  //           }
-  //         })
-  //         // Execute the above query
-  //           .exec(function (err, doc) {
-  //             // Log any errors
-  //             if (err) {
-  //               console.log(err);
-  //             }
-  //           });
-  //       }
-  //     });
-  // });
 }
