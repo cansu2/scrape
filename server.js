@@ -1,24 +1,34 @@
 var express = require("express");
+var exphbs = require('express-handlebars');
 var bodyParser = require("body-parser");
 
 var logger = require("morgan");
 var mongoose = require("mongoose");
 
-var axios = require("axios");
-var cheerio = require("cheerio");
-
+//es6
+mongoose.Promise = Promise;
 
 var app = express();
 
-app.use(logger("dev"));
+var port = process.env.PORT || 3000;
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static("public"));
+app.use(logger('dev'));
+app.use(bodyParser.urlencoded({
+  extended: false
+}))
 
-var databaseUrl = 'mongodb://localhost/week18day3mongoose'
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
+
+app.use(express.static('public'));
+
+
+// var mongodb_url = 'mongodb://cansu_cansu:uykusuz34@ds233739.mlab.com:33739/heroku_grspm2pb'
+var databaseUrl = 'mongodb://localhost/scraperDB'
 
 if (process.env.MONGODB_URI) {
-  mongoose.connect(process.env.MONGODB_URI);
+  // mongoose.connect(process.env.MONGODB_URI);
+  mongoose.connect(databaseUrl)
 } else {
   mongoose.connect(databaseUrl)
 }
@@ -31,52 +41,15 @@ db.on('error', function(err){
 
 db.once('open', function() { 
   console.log('Mongoose connection successful.')
-});
+}); 
 
-app.get("/", function(req, res) {
-    res.send("Hello world");
-  });
+
+require('./controllers/controller.js')(app);
+
+
+app.listen(port, function(){
+  console.log('Running on port: ' + port);
+});
   
-  // app.get("/scrape", function(req, res) {
-  //   request("https://www.chowhound.com/food-news/latest/", function(error, response, html) {
-  
-  //       // Load the HTML into cheerio and save it to a variable
-  //       // '$' becomes a shorthand for cheerio's selector commands, much like jQuery's '$'
-  //       var $ = cheerio.load(html);
-      
-  //       $(".post").each(function(i, element) {
-      
-  //         var title = $(element).find("h3").text();
-  //         var summary = $(element).find("p").text();
-         
-  //         var news_link = $(element).find(".more-link").attr("href");
-  //         var image_link =  $(element).find("img").attr("src");
-              
-  //         db.scraperData.insert({title: title, summary: summary, news_link: news_link, image_link:image_link});
-  
-  //       });
-  
-  //       db.scraperData.find({}, function(err, data) {
-  //         // Log any errors if the server encounters one
-  //           if (err) {
-  //             console.log(err);
-  //           }
-  //           // Otherwise, send the result of this query to the browser
-  //           else {
-  //             res.json(data);
-        
-  //       }
-  //       res.end(data);
-  //   });
-    
-  
-  //     });
-        
-  // });
-  
-  
-  // // Listen on port 3000
-  // app.listen(3000, function() {
-  //   console.log("App running on port 3000!");
-  // });
+ 
  

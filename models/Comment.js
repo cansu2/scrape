@@ -5,7 +5,8 @@ var Schema = mongoose.Schema;
 
 var CommentSchema = new Schema({
 
-  body: String
+  body: String,
+  created_time: String
 
 });
 

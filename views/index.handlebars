@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+         {{#each result}}
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="news-container" article-id="{{this._id}}">
+                        <h3>{{this.title}}</h3>
+                        <img src="{{this.image_link}}" alt="news_image"  />
+                        <p class="news-summary">{{this.summary}}</p>
+                        <a class="news-url" href="{{this.news_link}}">{{this.news_link}}</a>
+                    </div> 
+                </div> 
+                <div class="row" class="comments">   
+                    <p>{{this.comment}}</p>
+                    <p>{{this.created_time}}</p>
+                </div> 
+               {{!-- comment section for news --}}
+               <div class="comment-section">
+                <div class="row">
+                    <div class="form-group col-md-7">
+                        <input type="text" id="comment">
+                    </div>
+                     <div class="col-md-5">
+                         <button type="submit" id="saveComment" class="btn-sml btn-outline-secondary">Comment</button>
+                    </div>
+                </div>
+             </div>
+    </div>
+         {{/each}}
+</div>
+     

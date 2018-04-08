@@ -1,32 +1,44 @@
+h2 {
+    font-family: 'Courier New', Courier, monospace;
+    padding:50px;
+    background: rgb(73, 74, 73);
+    color:white;
+    
+}
+
 body {
     background: #f4e289;
+
 }
 
-.container {
-    width:300px;
-    height:300px;
-    float: left;
-    margin: 10px;
-}
 
 h3 {
+    padding-top:50px;
     font-family: 'Courier New', Courier, monospace;
+    /* font-weight: bolder; */
     color: rgb(36, 36, 36);
     font-size: 20px;
 }
 
-image {
-    width:200px;
-    height:200px;
+img {
+    width:350px;
+    height:250px;
+    padding:5px;
 }
 
-.news-summary {
+p {
     font-family: 'Courier New', Courier, monospace;
     color: gray;
     font-size: 15px;
+    padding:5px;
 }
 .news-url {
     font-family: 'Courier New', Courier, monospace;
     color: rgb(164, 164, 164);
     font-size: 12px;
 }
+
+#saveComment {
+    font-family: 'Courier New', Courier, monospace;
+}
+
