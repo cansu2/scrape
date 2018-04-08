@@ -17,7 +17,7 @@ h3 {
     font-family: 'Courier New', Courier, monospace;
     /* font-weight: bolder; */
     color: rgb(36, 36, 36);
-    font-size: 20px;
+    font-size: 21px;
 }
 
 img {
@@ -29,7 +29,7 @@ img {
 p {
     font-family: 'Courier New', Courier, monospace;
     color: gray;
-    font-size: 15px;
+    font-size: 16px;
     padding:5px;
 }
 .news-url {
