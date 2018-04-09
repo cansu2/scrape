@@ -23,12 +23,10 @@ app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 
 
-// var mongodb_url = 'mongodb://cansu_cansu:uykusuz34@ds233739.mlab.com:33739/heroku_grspm2pb'
 var databaseUrl = 'mongodb://localhost/scraperDB'
 
 if (process.env.MONGODB_URI) {
-  // mongoose.connect(process.env.MONGODB_URI);
-  mongoose.connect(databaseUrl)
+  mongoose.connect(process.env.MONGODB_URI);
 } else {
   mongoose.connect(databaseUrl)
 }

@@ -1,37 +1,44 @@
 <div class="container">
-    <div class="row">
+       <div class="row">
          {{#each result}}
             <div class="col-md-4">
-                <div class="row">
+                
                     <div class="news-container" data-id="{{this._id}}">
                         <h3>{{this.title}}</h3>
                         <img src="{{this.image_link}}" alt="news_image"  />
                         <p class="news-summary">{{this.summary}}</p>
                         <a class="news-url" href="{{this.news_link}}">{{this.news_link}}</a>
-                        
-                        {{#unless this.comment}}
-                            <p>There is no comment yet.</p>
-                        {{/unless}} 
-                        {{#if this.comment}}   
-                            <p id="comment-title">Comments</p> 
-                            <p id="comment">{{this.comment}}   <i id ="delete" class="fas fa-minus-circle" style="color:Tomato"></i></p>
-                            <p id="comment-time">{{this.created_time}}</p>  
-                        {{/if}}    
                     </div> 
-                </div> 
-               <div class="comment-section">
-                <div class="row">
-                <form method="POST" action="/articles/{{this._id}}">
-                    <div class="form-group col-md-7">
-                        <input type="text" id="comment-input">
-                    </div>
-                     <div class="col-md-5">
-                         <button type="submit" id="save-comment" class="btn-sml btn-outline-secondary">Comment</button>
-                    </div>
-                </div>
-            </form>
-             </div>
-    </div>
-         {{/each}}
-</div>
+
+                    {{#unless this.comment}}
+                        <div class="row">
+                            <p>There is no comment yet.</p>
+                        </div>    
+                    {{/unless}}
+
+                    <div class="row">
+                        <p id="comment-title">Comments</p> 
+                        <p id="comment">{{comment.body}}</p>
+                   </div>   
+
+
+                     <div class="comment-section">
+                        <form method="POST" action="/articles/{{this._id}}">
+                         <div class="form-group col-md-7">
+                             <input class="form-control" type="text" id="body" name="body" required/>
+                        {{!-- <textarea class="form-control" type="text" id="comment-input"></textarea> --}}
+                         </div>
+                         <div class="col-md-5">
+                             <button type="submit" id="save-comment" class="btn-sml btn-outline-secondary">Comment</button>
+                         </div>
+                         </form>
+                    </div>        
+            </div>
+           {{/each}}  
+         </div>    
+             
+    </div>              
+    
+     
+
      

@@ -68,7 +68,7 @@ module.exports = function(app){
                 }
             })
             .sort({'_id': -1})
-            res.end();
+
         });   
 
     app.get("/article/:id", function (req, res) {
@@ -101,10 +101,9 @@ module.exports = function(app){
             "_id": req.params.id
           }, {
             $push: {
-              "comment": doc._id
+              "comment": doc._id,  
             }
           }, {
-          
             new: true
           })
           // Execute the above query
@@ -115,6 +114,34 @@ module.exports = function(app){
               } else {
                 // Or send the document to the browser
                 res.redirect('back');
+              }
+            });
+        }
+      });
+  });
+
+
+  app.delete("/articles/:id/:commentid", function (req, res) {
+    Comment
+      .findByIdAndRemove(req.params.commentid, function (error, doc) {
+        // Log any errors
+        if (error) {
+          console.log(error// Otherwise
+          );
+        } else {
+          console.log(doc);
+          Article.findOneAndUpdate({
+            "_id": req.params.id
+          }, {
+            $pull: {
+              "comment": doc._id
+            }
+          })
+          // Execute the above query
+            .exec(function (err, doc) {
+              // Log any errors
+              if (err) {
+                console.log(err);
               }
             });
         }
