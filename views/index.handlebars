@@ -15,12 +15,15 @@
                             <p>There is no comment yet.</p>
                         </div>    
                     {{/unless}}
-
-                    <div class="row">
+                 
                         <p id="comment-title">Comments</p> 
-                        <p id="comment">{{comment.body}}</p>
-                   </div>   
-
+                        {{#each this.comment}}
+                        <div class="row">
+                        <p id="comment">{{this.body}}</p>
+                        </div>
+                         {{/each}}
+                     
+        
 
                      <div class="comment-section">
                         <form method="POST" action="/articles/{{this._id}}">

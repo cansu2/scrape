@@ -58,28 +58,32 @@ module.exports = function(app){
 
 
         app.get("/articles", function(req, res) {
-            Article.find({}, function (err, data) {
+            Article.find({})
+            .populate({path: "comment", select: "body"})
+            .exec (function (err, data) {
                 if (err) {
                     //when we have an error, we want to be very clear in our logging to make development and usage as a client easier...
                     console.log("We had an error at /articles", error);
                     //console.log("dang something wrong")
                 } else {
+                    console.log("data render comment",data)
                     res.render("index", {result: data});
                 }
             })
-            .sort({'_id': -1})
+            // .sort({'_id': -1})
 
         });   
 
-    app.get("/article/:id", function (req, res) {
+    app.get("/articles/:id", function (req, res) {
         Article.findOne({"_id": req.params.id})
-        .populate("comment")
+        .populate({path: "comment", select: "body"})
         .exec(function (error, doc) {
             // Log any errors
             if (error) {
               console.log(error// Otherwise, send the doc to the browser as a json object
               );
             } else {
+              console.log(doc,"comment dis");
               res.render("comments", {result: doc});
               // res.json (doc);
         
@@ -96,7 +100,8 @@ module.exports = function(app){
         if (error) {
           console.log(error);
         } else {
-          console.log(doc.id)
+          console.log(doc)
+
           Article.findOneAndUpdate({
             "_id": req.params.id
           }, {
@@ -113,6 +118,7 @@ module.exports = function(app){
                 console.log(err);
               } else {
                 // Or send the document to the browser
+                console.log("display comment",doc);
                 res.redirect('back');
               }
             });
