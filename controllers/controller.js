@@ -127,30 +127,49 @@ module.exports = function(app){
   });
 
 
-  app.delete("/articles/:id/:commentid", function (req, res) {
-    Comment
-      .findByIdAndRemove(req.params.commentid, function (error, doc) {
-        // Log any errors
-        if (error) {
-          console.log(error// Otherwise
-          );
-        } else {
-          console.log(doc);
-          Article.findOneAndUpdate({
-            "_id": req.params.id
-          }, {
-            $pull: {
-              "comment": doc._id
-            }
-          })
-          // Execute the above query
-            .exec(function (err, doc) {
-              // Log any errors
-              if (err) {
-                console.log(err);
-              }
-            });
-        }
-      });
+  // app.delete("/articles/:id/:commentid", function (req, res) {
+  //   Comment
+  //     .findByIdAndRemove(req.params.commentid, function (error, doc) {
+  //       // Log any errors
+  //       if (error) {
+  //         console.log(error// Otherwise
+  //         );
+  //       } else {
+  //         console.log(doc);
+  //         Article.findOneAndUpdate({
+  //           "_id": req.params.id
+  //         }, {
+  //           $pull: {
+  //             "comment": doc._id
+  //           }
+  //         })
+  //         // Execute the above query
+  //           .exec(function (err, doc) {
+  //             // Log any errors
+  //             if (err) {
+  //               console.log(err);
+  //             }
+  //           });
+  //       }
+  //     });
+  // });
+
+  app.post('/articles/comment/:id', function (req, res){
+
+    // Collect comment id
+    var commentId = req.params.id;
+  
+    // Find and Delete the Comment using the Id
+    Comment.findByIdAndRemove(commentId, function (err, todo) {  
+      
+      if (err) {
+        console.log(err);
+      } 
+      else {
+        res.redirect('/articles');
+     }
+  
+    });
+  
   });
 }

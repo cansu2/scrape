@@ -13,13 +13,19 @@
                     {{#unless this.comment}}
                         <div class="row">
                             <p>There is no comment yet.</p>
+                            
                         </div>    
                     {{/unless}}
                  
                         <p id="comment-title">Comments</p> 
                         {{#each this.comment}}
                         <div class="row">
-                        <p id="comment">{{this.body}}</p>
+                        <p id="comment">{{this.body}} </p>
+                         <span class="badge">
+                            <form id="form-delete-{{this_id}}" action="/articles/comment/{{this._id}}" method="post">
+                                <input class="btn-sml delete-comment-button btn-outline-secondary" data-id="{{this._id}}" type="submit" value="Delete" >
+                            </form>
+                            </span>
                         </div>
                          {{/each}}
                      
